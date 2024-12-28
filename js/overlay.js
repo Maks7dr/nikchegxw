@@ -22,7 +22,7 @@ document.getElementById('musicButton').addEventListener('click', function () {
       .catch(error => {
         console.error('Музыка не смогла воспроизвестись:', error);
       });
-  }, 1000); // Задержка в 1 секунды
+  }, 1000); // Задержка в 1 секунду
 });
 
 // Отключаем прокрутку при загрузке бэкдропа
