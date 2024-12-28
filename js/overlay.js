@@ -6,24 +6,20 @@ document.getElementById('musicButton').addEventListener('click', function () {
   // Добавляем класс анимации "тряски"
   santaButton.classList.add('shaking');
 
-  // Ждем 1 секунды перед запуском музыки и скрытием оверлея
+  // Ждем 1 секунду перед скрытием оверлея и запуском музыки
   setTimeout(() => {
     santaButton.classList.remove('shaking'); // Убираем тряску после завершения
+    backdrop.classList.add('hidden'); // Скрываем оверлей
 
     // Запускаем музыку
-    audio
-      .play()
-      .then(() => {
-        // Скрываем оверлей после успешного запуска музыки
-        backdrop.classList.add('hidden');
-        // Включаем прокрутку
-        document.body.style.overflow = '';
-      })
-      .catch(error => {
-        console.error('Музыка не смогла воспроизвестись:', error);
-      });
+    audio.play().catch(error => {
+      console.error('Не удалось воспроизвести музыку:', error);
+    });
+
+    // Включаем прокрутку страницы
+    document.body.style.overflow = '';
   }, 1000); // Задержка в 1 секунду
 });
 
-// Отключаем прокрутку при загрузке бэкдропа
+// Отключаем прокрутку при загрузке страницы
 document.body.style.overflow = 'hidden';
