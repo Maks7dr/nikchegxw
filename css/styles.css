@@ -416,3 +416,27 @@ address {
   color: #ffdab9;
 }
 /* #endregion */
+
+/* #region Santa */
+
+@keyframes shake {
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+  25% {
+    transform: translateX(-25px);
+  }
+  50% {
+    transform: translateX(25px);
+  }
+  75% {
+    transform: translateX(-25px);
+  }
+}
+
+.shaking {
+  animation: shake 0.7s ease-in-out;
+}
+
+/* #endregion */
