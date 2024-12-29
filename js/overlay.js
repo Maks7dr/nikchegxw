@@ -1,25 +1,26 @@
 document.getElementById('musicButton').addEventListener('click', function () {
   const audio = document.getElementById('jingleBells');
   const backdrop = document.getElementById('backdrop');
-  const santaButton = document.getElementById('musicButton');
+  const button = document.getElementById('musicButton');
 
-  // Добавляем класс анимации "тряски"
-  santaButton.classList.add('shaking');
+  // Запускаем музыку
+  audio
+    .play()
+    .then(() => {
+      // Добавляем классы для анимации
+      button.classList.add('hidden');
+      backdrop.classList.add('hidden');
 
-  // Ждем 1 секунду перед скрытием оверлея и запуском музыки
-  setTimeout(() => {
-    santaButton.classList.remove('shaking'); // Убираем тряску после завершения
-    backdrop.classList.add('hidden'); // Скрываем оверлей
-
-    // Запускаем музыку
-    audio.play().catch(error => {
-      console.error('Не удалось воспроизвести музыку:', error);
+      // Убираем оверлей и восстанавливаем прокрутку после завершения анимации
+      setTimeout(() => {
+        backdrop.style.display = 'none'; // Полностью скрываем оверлей
+        document.body.style.overflow = ''; // Включаем прокрутку
+      }, 500); // Время совпадает с длительностью анимации
+    })
+    .catch(error => {
+      console.error('Музыка не смогла воспроизвестись:', error);
     });
-
-    // Включаем прокрутку страницы
-    document.body.style.overflow = '';
-  }, 1000); // Задержка в 1 секунду
 });
 
-// Отключаем прокрутку при загрузке страницы
+// Отключаем прокрутку при загрузке
 document.body.style.overflow = 'hidden';
